@@ -1,0 +1,38 @@
+https://github.com/schadokar/go-to-do-app
+
+kubectl get nodes -o wide
+scp /home/sergio/foxminded/Task_4_3/Task_4_3_k3s_adding_More_resiliency/todo-app.yaml sergio@192.168.0.122:/home/sergio
+
+kubectl apply -f ./monitoring/prometheus.yaml
+kubectl apply -f ./monitoring/blackbox-exporter.yaml
+kubectl apply -f ./monitoring/node-exporter.yaml
+
+kubectl apply -f ./monitoring/loki.yaml
+kubectl apply -f ./monitoring/promtail.yaml
+
+kubectl apply -f ./monitoring/grafana.yaml
+
+
+kubectl apply -f todo-app.yaml
+
+kubectl apply -f letsencrypt.yaml
+
+kubectl get pods,svc,ing
+
+kubectl port-forward svc/grafana -n monitoring 3000:3000
+kubectl port-forward svc/go-server 8080:8080
+kubectl port-forward svc/prometheus -n monitoring 9090:9090
+
+kubectl port-forward svc/node-exporter -n monitoring 9100:9100
+kubectl port-forward svc/blackbox-exporter -n monitoring 9115:9115
+kubectl port-forward -n monitoring svc/loki 3100:3100
+
+
+kubectl port-forward svc/go-server 8080:8080
+
+wget -qO- http://go-server:8080
+
+kubectl exec -it <go-server-pod-name> -- sh
+curl http://localhost:8080
+
+loki.monitoring.svc.cluster.local:3100

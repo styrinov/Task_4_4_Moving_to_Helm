@@ -1,0 +1,32 @@
+docker build -t sergey1981/go-server:latest -t sergey1981/go-server:1.0.0 ./go-server
+
+docker build \
+  -t sergey1981/react-client:latest \
+  -t sergey1981/react-client:1.0.0 \
+  --build-arg REACT_APP_BACKEND_URL=http://localhost:8080 \
+  ./client
+
+
+  docker run -d \
+  --name mongo \
+  --network todonet \
+  -p 27017:27017 \
+  mongo:6
+
+  docker run -d \
+  --name go-server \
+  --network todonet \
+  --env-file ./go-server/.env \
+  -p 8080:8080 \
+  sergey1981/go-server:latest
+
+docker run -d \
+  --name react-client \
+  --network todonet \
+  -p 3000:80 \
+  sergey1981/react-client:latest
+
+
+scp '/home/sergio/foxminded/Task_4_2 /go-to-do-app/k8s-todo-app.yaml' sergio@192.168.0.122:/home/sergio/
+scp '/home/sergio/foxminded/Task_4_2 /go-to-do-app/todo-app.yaml' sergio@192.168.0.122:/home/sergio/
+

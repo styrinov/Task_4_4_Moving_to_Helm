@@ -1,0 +1,180 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-backup
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:6
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: data
+          mountPath: /data/db
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: mongo-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+  - port: 27017
+    targetPort: 27017
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-config
+data:
+  DB_URI: mongodb://mongo:27017
+  DB_NAME: test
+  DB_COLLECTION_NAME: todolist
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-server
+  template:
+    metadata:
+      labels:
+        app: go-server
+    spec:
+      containers:
+      - name: go-server
+        image: sergey1981/go-server:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: todo-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-server
+spec:
+  selector:
+    app: go-server
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-client
+  template:
+    metadata:
+      labels:
+        app: react-client
+    spec:
+      containers:
+      - name: react-client
+        image: sergey1981/react-client:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-client
+spec:
+  selector:
+    app: react-client
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.priority: "10"
+spec:
+  rules:
+  - host: todo.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: react-client
+            port:
+              number: 80
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mongo-backup
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: mongo:6
+            command:
+            - /bin/sh
+            - -c
+            - mongodump --host mongo --port 27017 --db test --out /backup/$(date +%Y-%m-%d)
+            volumeMounts:
+            - name: backup
+              mountPath: /backup
+          volumes:
+          - name: backup
+            persistentVolumeClaim:
+              claimName: mongo-backup
+          restartPolicy: OnFailure
