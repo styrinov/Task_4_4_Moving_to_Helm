@@ -1,0 +1,28 @@
+{{- if .Values.backup.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "backend.fullname" . }}-mongo-backup
+spec:
+  schedule: "{{ .Values.backup.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: mongo:6
+            command:
+            - /bin/sh
+            - -c
+            - >
+              mongodump --host todo-mongodb-0.todo-mongodb-headless --port 27017 --db {{ .Values.env.DB_NAME }} --out /backup/$(date +%Y-%m-%d)
+            volumeMounts:
+            - name: backup
+              mountPath: /backup
+          restartPolicy: OnFailure
+          volumes:
+          - name: backup
+            persistentVolumeClaim:
+              claimName: {{ .Values.backup.backupPVC }}
+{{- end }}

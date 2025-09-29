@@ -1,0 +1,29 @@
+# mongodb-values.yaml
+architecture: replicaset
+replicaCount: 1
+auth:
+  enabled: true
+  rootPassword: "change-me-root"
+  username: "todo"
+  password: "change-me-pass"
+  database: "test"
+primary:
+  service:
+    type: ClusterIP
+volumePermissions:
+  enabled: true
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  size: 5Gi
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+# for local development set
+# nodeSelector: {}
+# tolerations: []
+# affinity: {}   # add if you want explicit node anti-affinity for mongo pods
