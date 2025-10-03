@@ -1,0 +1,502 @@
+Admin@DESKTOP-1UC9IRT MINGW64 /d/foxminded/projects/github/Task_4_4/Task_4_2_k3s_creating_own_manifest (feature/Moving_to_Helm2)
+$ history
+   33  cd Task_4_2_k3s_creating_own_manifest/
+   34  ls
+   35  git branch -M main
+   36  git push -u origin main
+   37  kubectl get  pods  -n  monitoring
+   38  git branch
+   39  helm list
+   40  helm repo add bitnami https://charts.bitnami.com/bitnami
+   41  helm list
+   42  helm repo update
+   43  helm list
+   44  helm status
+   45  ssh-copy-id sergio@192.168.0.100
+   46*
+   47  helm list
+   48  kubectl get nodes -o wide
+   49  kubectl get nodes -o wide
+   50  kubectl get ns
+   51  helm install todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+   52  kubectl get pods -n=todo-app
+   53  kubectl get pods -n=todo-app
+   54  kubectl get pods
+   55  kubectl get pods -n=todo-app
+   56  kubectl get svc -n=todo-app
+   57  helm status
+   58  helm status todo-mongodb
+   59  helm status todo-mongodb-0
+   60  kubectl get pods -n=todo-app
+   61  helm status todo-mongodb
+   62  helm status todo-mongodb -n todo-app
+   63  kubectl get pods
+   64  kubectl get svc
+   65  kubectl get ingress
+   66  helm install todo-backend charts/backend --namespace todo-app
+   67  helm install todo-backend charts/backend --namespace todo-app
+   68  kubectl get pods -n=todo-app
+   69  kubectl logs -n todo-app pod/todo-backend-dfb8874b9-w2msz
+   70  kubectl describe pod todo-backend-dfb8874b9-w2msz -n todo-app
+   71  kubectl get secret todo-mongodb -n todo-app -o yaml
+   72  kubectl get secret todo-mongodb -n todo-app   -o jsonpath="{.data.mongodb-username}" | base64 -d && echo
+   73  kubectl get secret todo-mongodb -n todo-app   -o jsonpath="{.data.mongodb-username}" | base64 -d && echo
+   74  echo "Y2hhbmdlLW1lLXJvb3Q=" | base64 -d
+   75  echo "Y2hhbmdlLW1lLXBhc3M=" | base64 -d
+   76  helm upgrade todo-backend charts/backend -n todo-app
+   77  helm upgrade todo-backend charts/backend -n todo-app
+   78  kubectl get pods -n todo-app
+   79  helm upgrade todo-backend charts/backend -n todo-app
+   80  kubectl get pods -n todo-app
+   81  kubectl logs -n todo-app pod/todo-backend-64777b89df-9g2pw
+   82  kubectl logs -n todo-app pod/todo-backend-64777b89df-9g2pw
+   83  kubectl describe pod todo-backend-64777b89df-9g2pw -n todo-app
+   84  kubectl logs -n todo-app pod/todo-backend-64777b89df-9g2pw
+   85  helm upgrade todo-backend charts/backend -n todo-app
+   86  kubectl get pods -n todo-app
+   87  helm upgrade todo-backend charts/backend -n todo-app
+   88  kubectl logs -n todo-app pod/todo-backend-64777b89df-9g2pw
+   89  kubectl get svc -n todo-app
+   90  kubectl apply -f todo-mongodb-svc.yaml
+   91  kubectl apply -f ./charts/todo-mongodb-svc.yaml
+   92  kubectl get svc -n todo-app
+   93  kubectl delete pods -n todo-app -l app.kubernetes.io/instance=todo-backend
+   94  kubectl delete pods -n todo-app -l app.kubernetes.io/instance=todo-backend
+   95  kubectl delete pods -n todo-app -l app.kubernetes.io/instance=todo-backend
+   96  kubectl get deployment -n todo-app
+   97  helm upgrade todo-backend charts/backend -n todo-app
+   98  kubectl get deployment -n todo-app
+   99  kubectl get deployment -n todo-app
+  100  kubectl get svc -n todo-app
+  101  kubectl get pods -n todo-app
+  102  kubectl get pods -n todo-app
+  103  helm upgrade todo-backend charts/backend -n todo-app
+  104  kubectl get pods -n todo-app
+  105  kubectl get pods -n todo-app
+  106  kubectl delete pods -n todo-app -l app.kubernetes.io/instance=todo-backend
+  107  kubectl get pods -n todo-app --show-labels
+  108  kubectl delete rs -n todo-app -l app=backend
+  109  kubectl get pods -n todo-app
+  110  kubectl get pods -n todo-app
+  111  helm upgrade todo-backend charts/backend -n todo-app
+  112  kubectl get pods -n todo-app
+  113  kubectl logs -n todo-app pod/todo-backend-64777b89df-86c2m
+  114  kubectl get svc -n todo-app
+  115  helm get values todo-mongodb -n todo-app
+  116  helm upgrade --install todo-backend charts/backend -n todo-app
+  117  helm upgrade --install todo-backend charts/backend -n todo-app
+  118  kubectl get pods -n todo-app
+  119  kubectl delete pods -n todo-app -l app=backend
+  120  helm upgrade todo-backend charts/backend -n todo-app
+  121  kubectl get pods -n todo-app
+  122  helm install todo-backend charts/backend -n todo-app
+  123  helm upgrade todo-backend charts/backend -n todo-app
+  124  kubectl get pods -n todo-app
+  125  kubectl get pods -n todo-app
+  126  kubectl logs -n todo-app pod/todo-backend-5566f74dcb-fh8jn
+  127  kubectl delete pods -n todo-app -l app=backend
+  128  kubectl get pods -n todo-app
+  129  helm upgrade --install todo-backend charts/backend -n todo-app
+  130  helm upgrade --install todo-backend charts/backend -n todo-app
+  131  helm upgrade --install todo-backend charts/backend -n todo-app
+  132  helm upgrade --install todo-backend charts/backend -n todo-app
+  133  helm upgrade --install todo-backend charts/backend -n todo-app
+  134  helm upgrade --install todo-backend charts/backend -n todo-app
+  135  helm upgrade --install todo-backend charts/backend -n todo-app
+  136  kubectl delete pods -n todo-app -l app=backend
+  137  kubectl get pods -n todo-app
+  138  kubectl get pods -n todo-app
+  139  helm list -n todo-app
+  140  helm install todo-backend charts/backend --namespace todo-app
+  141  kubectl get pods -n todo-app
+  142  helm upgrade todo-backend charts/backend -n todo-app
+  143  kubectl get pods -n todo-app
+  144  helm upgrade todo-backend charts/backend -n todo-app
+  145  kubectl get pods -n todo-app
+  146  kubectl logs -n todo-app pod/todo-backend-dfb8874b9-4m6xt
+  147  kubectl get pods -n todo-app
+  148  helm upgrade todo-backend charts/backend -n todo-app
+  149  kubectl get pods -n todo-app
+  150  kubectl get pods -n todo-app
+  151  kubectl get pods -n todo-app
+  152  kubectl get pods -n todo-app
+  153  kubectl get pods -n todo-app
+  154  kubectl get pods -n todo-app
+  155  kubectl get pods -n todo-app
+  156  kubectl get pods -n todo-app
+  157  kubectl get pods -n todo-app
+  158  kubectl get pods -n todo-app
+  159  kubectl get pods -n todo-app
+  160  kubectl get pods -n todo-app
+  161  kubectl get pods -n todo-app
+  162  kubectl get pods -n todo-app
+  163  helm upgrade todo-backend charts/backend -n todo-app
+  164  kubectl get pods -n todo-app
+  165  kubectl get pods -n todo-app
+  166  kubectl get pods -n todo-app
+  167  kubectl get pods -n todo-app
+  168  kubectl get pods -n todo-app
+  169  kubectl get pods -n todo-app
+  170  kubectl get pods -n todo-app
+  171  kubectl get pods -n todo-app
+  172  kubectl get svc -n todo-app
+  173  helm install todo-frontend charts/frontend --namespace todo-app
+  174  helm install todo-frontend charts/frontend --namespace todo-app
+  175  helm lint charts/frontend
+  176  helm lint charts/frontend
+  177  helm lint charts/frontend
+  178  helm lint charts/frontend
+  179  helm lint charts/frontend
+  180  helm lint charts/frontend
+  181  helm install todo-frontend charts/frontend --namespace todo-app
+  182  kubectl get pods -n todo-app
+  183  kubectl get pods -n todo-app
+  184  kubectl get pods -n todo-app
+  185  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-drzv8
+  186  kubectl get svc -n todo-app
+  187  kubectl get pods -n todo-app
+  188  kubectl get pods -n todo-app
+  189  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-drzv8
+  190  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-drzv8
+  191  kubectl get pods -n todo-app
+  192  kubectl get pods -n todo-app
+  193  kubectl get pods -n todo-app
+  194  kubectl get pods -n todo-app
+  195  helm install todo-frontend charts/frontend --namespace todo-app
+  196  helm update todo-frontend charts/frontend --namespace todo-app
+  197  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  198  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  199  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  200  kubectl get pods -n todo-app
+  201  kubectl get pods -n todo-app
+  202  kubectl get pods -n todo-app
+  203  kubectl get pods -n todo-app
+  204  kubectl logs -n todo-app pod/todo-frontend-frontend-7bcd84cdbc-pvthf
+  205  kubectl get pods -n todo-app
+  206  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  207  kubectl get pods -n todo-app
+  208  kubectl get pods -n todo-app
+  209  kubectl get pods -n todo-app
+  210  kubectl get pods -n todo-app
+  211  kubectl get pods -n todo-app
+  212  kubectl get pods -n todo-app
+  213  kubectl get pods -n todo-app
+  214  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-drzv8
+  215  kubectl get svc -n todo-app
+  216  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  217  kubectl get pods -n todo-app
+  218  kubectl get pods -n todo-app
+  219  kubectl get pods -n todo-app
+  220  kubectl get pods -n todo-app
+  221  kubectl get pods -n todo-app
+  222  helm upgrade todo-backend charts/backend -n todo-app
+  223  kubectl get pods -n todo-app
+  224  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  225  kubectl get pods -n todo-app
+  226  kubectl get pods -n todo-app
+  227  kubectl get pods -n todo-app
+  228  kubectl get pods -n todo-app
+  229  kubectl get pods -n todo-app
+  230  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-mnxxt
+  231  kubectl get pods -n todo-app
+  232  kubectl get pods -n todo-app
+  233  kubectl get pods -n todo-app
+  234  kubectl logs -n todo-app pod/todo-backend-5849b7bd64-mnxxt
+  235  kubectl get pods -n todo-app
+  236  kubectl get pod todo-backend-5849b7bd64-r66qt -n todo-app -o jsonpath='{.spec.containers[*].name}'
+  237  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c todo-backend -- sh
+  238  kubectl get pod todo-backend-5849b7bd64-r66qt -n todo-app -o jsonpath='{.spec.containers[*].name}'
+  239  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- sh
+  240  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- sh
+  241  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- sh
+  242  kubectl get pod todo-backend-5849b7bd64-r66qt -n todo-app -o jsonpath='{.spec.containers[*].name}'
+  243  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- sh
+  244  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- sh
+  245  kubectl exec -it todo-backend-5849b7bd64-r66qt -n todo-app -c backend -- bash
+  246  kubectl get pods -n todo-app
+  247  clear
+  248  helm upgrade --install todo-backend charts/backend -n todo-app
+  249  kubectl get pods -n todo-app
+  250  kubectl get pods -n todo-app
+  251  kubectl get pods -n todo-app
+  252  kubectl get pods -n todo-app
+  253  kubectl get pods -n todo-app
+  254   kubectl exec -it todo-backend-5849b7bd64-kbcqc  -n todo-app -c backend -- sh
+  255   kubectl exec -it todo-backend-5849b7bd64-kbcqc  -n todo-app -c backend -- sh
+  256  kubectl get pods -n todo-app
+  257  helm upgrade --install todo-backend charts/backend -n todo-app
+  258  helm upgrade --install todo-backend charts/backend -n todo-app
+  259  kubectl get pods -n todo-app
+  260  kubectl get pods -n todo-app
+  261  kubectl get pods -n todo-app
+  262   kubectl exec -it todo-backend-66f8b6fd4f-4zqhg  -n todo-app -c backend -- sh
+  263  kubectl logs todo-backend-66f8b6fd4f-4zqhg -n todo-app -c backend
+  264   kubectl exec -it todo-backend-66f8b6fd4f-4zqhg  -n todo-app -c backend -- sh
+  265  kubectl get pods -n todo-app
+  266  kubectl get svc -n todo-app
+  267   kubectl exec -it todo-backend-66f8b6fd4f-4zqhg  -n todo-app -c backend -- sh
+  268   kubectl exec -it todo-backend-66f8b6fd4f-4zqhg  -n todo-app -c backend -- sh
+  269  helm upgrade --install todo-backend charts/backend -n todo-app
+  270  kubectl get svc -n todo-app
+  271  kubectl get pods -n todo-app
+  272  kubectl get pods -n todo-app
+  273  kubectl get pods -n todo-app
+  274  kubectl get pods -n todo-app
+  275  kubectl get pods -n todo-app
+  276  kubectl get pods -n todo-app
+  277  helm upgrade --install todo-backend charts/backend -n todo-app
+  278  kubectl get pods -n todo-app
+  279  kubectl get pods -n todo-app
+  280  kubectl get pods -n todo-app
+  281  kubectl exec -it todo-backend-66f8b6fd4f-rqkzb  -n todo-app -c backend -- sh
+  282* helm install todo-backend -n todo-app
+  283  helm install  todo-backend charts/backend -n todo-app
+  284  helm uninstall todo-backend -n todo-app
+  285  helm install  todo-backend charts/backend -n todo-app
+  286  kubectl get pods -n todo-app
+  287  kubectl exec -it todo-backend-7fd4cb96d6-p5w84  -n todo-app -c backend -- sh
+  288  kubectl get pods -n todo-app
+  289  helm install todo-frontend charts/frontend -n todo-app
+  290  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  291  kubectl get pods -n todo-app
+  292  kubectl get pods -n todo-app
+  293  kubectl get pods -n todo-app
+  294  kubectl get pods -n todo-app
+  295  kubectl get pods -n todo-app
+  296  kubectl get pods -n todo-app
+  297  kubectl exec -it todo-backend-7fd4cb96d6-p5w84  -n todo-app -c backend -- sh
+  298  helm list -n todo-app
+  299  helm uninstall todo-frontend -n todo-app
+  300  helm list -n todo-app
+  301  helm uninstall todo-backend  -n todo-app
+  302  helm list -n todo-app
+  303  helm uninstall todo-mongodb  -n todo-app
+  304  helm list -n todo-app
+  305  kubectl get pods -n todo-app
+  306  kubectl apply -f todo-app.yaml
+  307  kubectl get pods
+  308  kubectl get pods
+  309  kubectl delete -f todo-app.yaml
+  310  kubectl get pods
+  311  helm install todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+  312* helm upgrade todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+  313  helm list -n todo-app
+  314  helm uninstall todo-mongodb  -n todo-app
+  315  helm install todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+  316  helm install  todo-backend charts/backend -n todo-app
+  317  helm list -n todo-app
+  318  kubectl get pods -n todo-app
+  319  kubectl get pods -n todo-app
+  320  kubectl exec -it todo-backend-f8f7984ff-rrm7z   -n todo-app -c backend -- sh
+  321  kubectl get pods -n todo-app
+  322  helm install todo-frontend charts/frontend -n todo-app
+  323  kubectl get pods -n todo-app
+  324  kubectl get pods -n todo-app
+  325  kubectl get pods -n todo-app
+  326  kubectl get pods -n todo-app
+  327  kubectl get pods -n todo-app
+  328  kubectl get pods -n todo-app
+  329  kubectl svc pods -n todo-app
+  330  kubectl get  svc  -n todo-app
+  331  kubectl exec -it todo-backend-f8f7984ff-rrm7z   -n todo-app -c backend -- sh
+  332  helm list -n todo-app
+  333  helm uninstall todo-backend  -n todo-app
+  334  helm list -n todo-app
+  335  helm install  todo-backend charts/backend -n todo-app
+  336  helm list -n todo-app
+  337  kubectl svc pods -n todo-app
+  338  kubectl get pods -n todo-app
+  339  kubectl get svc -n todo-app
+  340  kubectl exec -it todo-backend-f8f7984ff-qmrnk   -n todo-app -c backend -- sh
+  341  kubectl get svc -n todo-app
+  342  kubectl get pods -n todo-app
+  343  kubectl get pods -n todo-app
+  344  helm list -n todo-app
+  345  helm uninstall todo-frontend  -n todo-app
+  346  helm list -n todo-app
+  347  helm uninstall todo-backend  -n todo-app
+  348  helm list -n todo-app
+  349* helm uninstall todo-mongodb   -n todo-a
+  350  helm install todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+  351  helm list -n todo-app
+  352  kubectl get pods -n todo-app
+  353  helm install  todo-backend charts/backend -n todo-app
+  354  helm install  todo-backend charts/backend -n todo-app
+  355  helm template todo-backend ./charts/backend -n todo-app
+  356  helm install  todo-backend charts/backend -n todo-app
+  357  kubectl get pods -n todo-app
+  358  kubectl get pods -n todo-app
+  359  kubectl get pods -n todo-app
+  360  helm upgrade  todo-backend charts/backend -n todo-app
+  361  kubectl get pods -n todo-app
+  362  kubectl get pods -n todo-app
+  363  kubectl logs -n todo-app todo-backend-backend-747994457d-tpbsf
+  364* helm uninstall todo-mongodb -n todo-apptodo-mongodb~
+  365  helm install todo-mongodb bitnami/mongodb -f mongodb-values.yaml -n todo-app
+  366  helm install todo-mongodb bitnami/mongodb   --namespace todo-app   -f charts/mongodb-values.yaml
+  367  kubectl delete statefulset,svc,pvc,secret -n todo-app -l app.kubernetes.io/name=mongodb
+  368  kubectl delete service todo-mongodb -n todo-app
+  369  helm install todo-mongodb bitnami/mongodb -f charts/mongodb-values.yaml -n todo-app
+  370  helm list -n todo-app
+  371  helm uninstall todo-backend  -n todo-app
+  372  helm list -n todo-app
+  373  helm install  todo-backend charts/backend -n todo-app
+  374  kubectl get pods -n todo-app
+  375  kubectl get pods -n todo-app
+  376  kubectl get pods -n todo-app
+  377  kubectl get pods -n todo-app
+  378  kubectl get pods -n todo-app
+  379  kubectl get pods -n todo-app
+  380  kubectl get pods -n todo-app
+  381  kubectl get pods -n todo-app
+  382  kubectl get pods -n todo-app
+  383  kubectl get pods -n todo-app
+  384  kubectl get pods -n todo-app
+  385  kubectl get pods -n todo-app
+  386  helm list -n todo-app
+  387  kubectl logs -n todo-app todo-backend-backend-747994457d-w5cds
+  388  kubectl exec -it todo-backend-backend-747994457d-w5cds   -n todo-app -c backend -- sh
+  389  kubectl exec -it todo-backend-backend-747994457d-w5cds   -n todo-app  -- sh
+  390  kubectl logs -n todo-app todo-backend-backend-747994457d-w5cds
+  391  kubectl exec -it todo-backend-backend-747994457d-w5cds   -n todo-app  -- sh
+  392  kubectl port-forward -n todo-app svc/go-server 8080:8080
+  393  kubectl get svc -n todo-app
+  394  kubectl port-forward -n todo-app svc/todo-backend-backend 8080:8080
+  395  helm uninstall todo-backend  -n todo-app
+  396  helm list -n todo-app
+  397  helm install  todo-backend charts/backend -n todo-app
+  398  helm list -n todo-app
+  399  kubectl get svc -n todo-app
+  400  kubectl get pods -n todo-app
+  401  kubectl port-forward -n todo-app svc/todo-backend-backend 8080:8080
+  402  kubectl get pods -n todo-app
+  403  kubectl exec -it todo-backend-backend-747994457d-lnkx9   -n todo-app  -- sh
+  404  kubectl exec -it -n todo-app deploy/todo-backend -- env | grep DB_
+  405  kubectl exec -it -n todo-app deploy/todo-backend-backend -- env | grep DB_
+  406  kubectl port-forward -n todo-app svc/todo-backend-backend 8080:8080
+  407  kubectl get pods -n todo-app
+  408  helm list -n todo-app
+  409  helm install todo-frontend charts/frontend -n todo-app
+  410  helm template charts/frontend -n todo-app
+  411  helm template charts/frontend -n todo-app
+  412  helm template charts/frontend -n todo-app
+  413  helm template charts/frontend -n todo-app --debug
+  414  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  415  kubectl get pods -n todo-app
+  416  kubectl get pods -n todo-app
+  417  kubectl logs -n todo-app todo-frontend-frontend-6cc969ff59-wxgth
+  418  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  419  kubectl get pods -n todo-app
+  420  kubectl get pods -n todo-app
+  421  helm list -n todo-app
+  422  helm uninstall todo-frontend   -n todo-app
+  423  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  424  helm list -n todo-app
+  425  kubectl get pods -n todo-app
+  426  kubectl get pods -n todo-app
+  427  kubectl get pods -n todo-app
+  428  kubectl get pods -n todo-app
+  429  kubectl get pods -n todo-app
+  430  kubectl get pods -n todo-app
+  431  kubectl get pods -n todo-app
+  432  kubectl get pods -n todo-app
+  433  helm uninstall todo-frontend   -n todo-app
+  434  helm list -n todo-app
+  435  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  436  helm list -n todo-app
+  437  kubectl get pods -n todo-app
+  438  helm uninstall todo-frontend   -n todo-app
+  439  kubectl get pods -n todo-app
+  440  helm uninstall todo-frontend   -n todo-app
+  441  helm list -n todo-app
+  442  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  443  kubectl get pods -n todo-app
+  444  kubectl logs -n todo-app todo-frontend-frontend-7cf5948db-vl27b
+  445  kubectl get svc -n todo-app
+  446  kubectl rollout restart deploy/todo-frontend-frontend -n todo-app
+  447  kubectl get pods -n todo-app
+  448  kubectl logs -n todo-app deploy/todo-frontend-frontend
+  449  kubectl get svc -n todo-app
+  450  helm uninstall todo-frontend   -n todo-app
+  451  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  452  kubectl get pods -n todo-app
+  453  kubectl logs -n todo-app deploy/todo-frontend-frontend
+  454  kubectl port-forward svc/todo-frontend-frontend 8080:80 -n todo-app
+  455  ping  todo.local
+  456  kubectl port-forward svc/todo-frontend-frontend 8080:80 -n todo-app
+  457  helm uninstall todo-frontend   -n todo-app
+  458  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  459  kubectl get pods -n todo-app
+  460  kubectl get pods -n todo-app
+  461  kubectl port-forward svc/todo-frontend-frontend 8080:80 -n todo-app
+  462  helm uninstall todo-frontend   -n todo-app
+  463  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  464  kubectl get pods -n todo-app
+  465  kubectl get pods -n todo-app
+  466  kubectl get pods -n todo-app
+  467  helm uninstall todo-frontend   -n todo-app
+  468  helm uninstall todo-backend  -n todo-app
+  469  helm upgrade --install todo-backend charts/frontend -n todo-app
+  470  helm list -n todo-app
+  471  helm install  todo-backend charts/backend -n todo-app
+  472  helm install  todo-backend charts/backend -n todo-app
+  473  helm install  todo-backend charts/backend -n todo-app
+  474  helm upgrade --install todo-backend charts/backend -n todo-app
+  475  helm upgrade --install todo-backend charts/backend -n todo-app
+  476  helm upgrade --install todo-backend charts/backend -n todo-app
+  477  helm upgrade --install todo-backend charts/backend -n todo-app
+  478  helm list -n todo-app
+  479  kubectl get pods -n todo-app
+  480  kubectl get pods -n todo-app
+  481  kubectl port-forward -n todo-app svc/todo-backend-backend 8080:8080
+  482  helm list -n todo-app
+  483  kubectl get pods -n todo-app
+  484  helm upgrade --install todo-backend charts/frontend -n todo-app
+  485  kubectl get pods -n todo-app
+  486  kubectl get pods -n todo-app
+  487  kubectl get pods -n todo-app
+  488  kubectl get pods -n todo-app
+  489  kubectl get pods -n todo-app
+  490  kubectl get pods -n todo-app
+  491  kubectl get pods -n todo-app
+  492  kubectl get pods -n todo-app
+  493  helm list -n todo-app
+  494  helm list -n todo-app
+  495  helm uninstall todo-backend  -n todo-app
+  496  helm install  todo-backend charts/backend -n todo-app
+  497  kubectl port-forward svc/todo-frontend-frontend 8080:80 -n todo-app
+  498  kubectl port-forward -n todo-app svc/todo-backend-backend 8080:8080
+  499  helm install  todo-frontend charts/frontend -n todo-app
+  500  helm list -n todo-app
+  501  kubectl get pods -n todo-app
+  502  kubectl get pods -n todo-app
+  503  kubectl get pods -n todo-app
+  504  kubectl get pods -n todo-app
+  505  kubectl get pods -n todo-app
+  506  kubectl get pods -n todo-app
+  507  kubectl get pods -n todo-app
+  508  kubectl get pods -n todo-app
+  509  kubectl get pods -n todo-app
+  510  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  511  kubectl get pods -n todo-app
+  512  kubectl get pods -n todo-app
+  513  kubectl get pods -n todo-app
+  514  kubectl get pods -n todo-app
+  515  kubectl get pods -n todo-app
+  516  kubectl get pods -n todo-app
+  517  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  518  kubectl get pods -n todo-app
+  519  kubectl get pods -n todo-app
+  520  kubectl get pods -n todo-app
+  521  kubectl get pods -n todo-app
+  522  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  523  kubectl get pods -n todo-app
+  524  kubectl get pods -n todo-app
+  525  helm upgrade --install todo-frontend charts/frontend -n todo-app
+  526  kubectl get pods -n todo-app
+  527  kubectl get pods -n todo-app
+  528  kubectl get pods -n todo-app
+  529  kubectl get pods -n todo-app
+  530  kubectl get pods -n todo-app
+  531  kubectl get pods -n todo-app
+  532  history

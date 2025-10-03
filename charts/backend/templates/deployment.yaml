@@ -14,11 +14,6 @@ spec:
     metadata:
       labels:
         app: {{ include "backend.fullname" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-      {{- with .Values.podAnnotations }}
-      annotations:
-{{ toYaml . | nindent 8 }}
-      {{- end }}
     spec:
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -38,6 +33,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
-          envFrom:
-            - configMapRef:
-                name: {{ include "backend.fullname" . }}-config
+          env:
+            - name: DB_URI
+              value: {{ .Values.config.DB_URI | quote }}
+            - name: DB_NAME
+              value: {{ .Values.config.DB_NAME | quote }}
+            - name: DB_COLLECTION_NAME
+              value: {{ .Values.config.DB_COLLECTION_NAME | quote }}
+          readinessProbe:
+{{ toYaml .Values.readinessProbe | nindent 12 }}
+          livenessProbe:
+{{ toYaml .Values.livenessProbe | nindent 12 }}
+          resources:
+{{ toYaml .Values.resources | nindent 12 }}

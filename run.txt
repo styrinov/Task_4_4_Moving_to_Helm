@@ -36,3 +36,5 @@ kubectl exec -it <go-server-pod-name> -- sh
 curl http://localhost:8080
 
 loki.monitoring.svc.cluster.local:3100
+
+http://todo.local/
