@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "frontend.fullname" . }}-nginx-config
+  name: {{ .Release.Name }}-frontend-nginx-config
 data:
   default.conf: |
     server {
@@ -15,8 +15,10 @@ data:
             alias /usr/share/nginx/html/static/;
         }
 
+        # Strip /api prefix and forward to backend
         location /api/ {
-            proxy_pass http://todo-backend.todo-app.svc.cluster.local:8080;
+            rewrite ^/api/(.*)$ /$1 break;
+            proxy_pass http://{{ .Values.backend.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.backend.servicePort }};
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';

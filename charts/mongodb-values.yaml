@@ -1,5 +1,5 @@
 # mongodb-values.yaml
-architecture: replicaset
+architecture: standalone
 replicaCount: 1
 auth:
   enabled: true
@@ -18,11 +18,11 @@ persistence:
   size: 5Gi
 resources:
   limits:
+    cpu: 600m
+    memory: 1Gi
+  requests:
     cpu: 500m
     memory: 512Mi
-  requests:
-    cpu: 250m
-    memory: 256Mi
 # for local development set
 # nodeSelector: {}
 # tolerations: []

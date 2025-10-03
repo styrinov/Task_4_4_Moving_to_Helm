@@ -1,6 +1,6 @@
 apiVersion: v2
 name: backend
-description: Go server (todolist) chart
+description: Go server (todo) Helm chart
 type: application
 version: 0.1.0
-appVersion: "latest"
+appVersion: "1.0"

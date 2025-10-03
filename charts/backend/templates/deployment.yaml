@@ -3,53 +3,41 @@ kind: Deployment
 metadata:
   name: {{ include "backend.fullname" . }}
   labels:
-    app: {{ include "backend.name" . }}
+    app.kubernetes.io/name: {{ include "backend.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "backend.name" . }}
+      app: {{ include "backend.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ include "backend.name" . }}
-    spec:
-      containers:
-      - name: {{ include "backend.name" . }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        ports:
-        - containerPort: 8080
-        env:
-        - name: DB_URI
-          value: {{ .Values.env.DB_URI | quote }}
-        - name: DB_NAME
-          value: {{ .Values.env.DB_NAME | quote }}
-        - name: DB_COLLECTION_NAME
-          value: {{ .Values.env.DB_COLLECTION_NAME | quote }}
-        resources:
-          requests:
-            cpu: {{ .Values.resources.requests.cpu }}
-            memory: {{ .Values.resources.requests.memory }}
-          limits:
-            cpu: {{ .Values.resources.limits.cpu }}
-            memory: {{ .Values.resources.limits.memory }}
-        readinessProbe:
-{{ toYaml .Values.readinessProbe | indent 10 }}
-        livenessProbe:
-{{ toYaml .Values.livenessProbe | indent 10 }}
-
-      {{- if .Values.nodeAntiAffinity.enabled }}
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - {{ include "backend.name" . }}
-              topologyKey: {{ .Values.nodeAntiAffinity.topologyKey }}
+        app: {{ include "backend.fullname" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+{{ toYaml . | nindent 8 }}
       {{- end }}
+    spec:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: go-server
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "backend.fullname" . }}-config
